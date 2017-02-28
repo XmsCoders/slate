@@ -3,13 +3,14 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
+  - java
+  - c#
+  - php
   - javascript
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+#toc_footers:
+#  - <a href='#'>Sign Up for a Developer Key</a>
+#  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
   - errors
@@ -25,95 +26,46 @@ We have language bindings in Shell, Ruby, and Python! You can view code examples
 
 This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
-# Authentication
+# Contacts
 
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
+## Get All Contacts
 
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
+  curl -v -X GET http://api.multimediabs.com/v1/groups/4633a4fe-5544-4ac9-95ac-9e1ffc4751bc/contacts \
+      -H "Content-Type:application/json" \
+      -H "Authorization: Bearer [Access-Token]"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{
+	"content":[
+		{
+			"id":"f12edd46-96b8-41d9-baa7-58f42daa9301",
+			"name":"Boyer",
+			"first-name":"Mael"
+		},
+		{
+			"id":"54032d6f-19cd-4049-8cfe-bd80a563c911",
+			"name":"Le gall",
+			"first-name":"Ethan"
+		},
+		...
+		{
+			"id":"372c1ede-03d5-41d4-bd2c-0471a3c371be",
+			"name":"Morel",
+			"first-name":"Alexis"
+		}
+	],
+	"last":false,
+	"first":true,
+	"totalPages":3,
+	"totalElements":25,
+	"numberOfElements":25,
+	"size":10,
+	"number":0
+}
 ```
 
 This endpoint retrieves all kittens.
